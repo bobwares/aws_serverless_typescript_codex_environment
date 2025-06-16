@@ -1,2 +1,2 @@
 # aws_serverless_typescript_codex_environment
-aws_ser
+
