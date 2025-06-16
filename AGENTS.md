@@ -73,10 +73,18 @@ Generate **exact, runnable code and IaC** in a single pass.
 * **DynamoDB table:** `pk` & `sk`; GSI `gsi1` (`email`).
 * **Security:** Least-privilege IAM; AWS-managed policies only when unavoidable.
 * **Validation:** Ajv v8 strict; 400 on first schema violation.
-* **Testing:** Jest; ≥ 1 happy-path + 1 validation-failure test per handler.
+* **Testing:** Jest; each `.ts` file must have a matching `*.test.ts` file. Each
+  handler requires ≥ 1 happy-path and ≥ 1 validation-failure test.
 * **Linting/formatting:** ESLint + Prettier; forbid wildcard imports.
-* **Observability:** Structured JSON logs to CloudWatch, X-Ray tracing, custom metric `CustomerOpsDuration`.
-* **Docs:** Keep README up to date with build & deploy commands.
+* **HTTP Tests:** create a `.http` file under `test/http/` for every CRUD
+  operation.
+* **Build:** `npm_build` must output zipped Lambda artifacts (one zip per
+  handler) referenced by Terraform via `filename`.
+* **NPM Scripts:** avoid inline shell comments; document commands in `README`
+  instead.
+* **Observability:** Structured JSON logs to CloudWatch, X-Ray tracing, custom
+  metric `CustomerOpsDuration`.
+* **Docs:** Keep README up to date with build and deploy commands.
 
 ---
 
