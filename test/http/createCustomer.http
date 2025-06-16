@@ -1,9 +1,0 @@
-POST https://example.com/customers
-Content-Type: application/json
-
-{
-  "firstName": "Alice",
-  "lastName": "Smith",
-  "emails": ["a@example.com"],
-  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": false}
-}
