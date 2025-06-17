@@ -1,6 +1,6 @@
 {
   "name": "customer-profile-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Serverless customer management API using AWS Lambda, API Gateway and DynamoDB.",
   "type": "module",
   "scripts": {
@@ -28,6 +28,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.528.0",
     "@aws-sdk/lib-dynamodb": "^3.528.0",
+    "@aws-sdk/client-sqs": "^3.528.0",
     "uuid": "^9.0.1"
   }
 }

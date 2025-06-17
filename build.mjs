@@ -1,9 +1,19 @@
+/*
+# App: CustomerProfileAPI
+# Package: build
+# File: build.mjs
+# Version: 0.1.1
+# Author: ServerlessArchitectBot
+# Date: 2025-06-17T01:40:00Z
+# Description: Bundle handlers with esbuild and zip for deployment.
+*/
+
 import { build } from 'esbuild';
-import { promises as fs } from 'fs';
-import { join } from 'path';
-import { createReadStream, createWriteStream } from 'fs';
-import { pipeline } from 'stream/promises';
-import { gzip } from 'zlib';
+import { rm, mkdir } from 'fs/promises';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+
+const execFileAsync = promisify(execFile);
 
 const handlers = [
   'createCustomer',
@@ -16,8 +26,8 @@ const handlers = [
   'worker',
 ];
 
-await fs.rm('dist', { recursive: true, force: true });
-await fs.mkdir('dist', { recursive: true });
+await rm('dist', { recursive: true, force: true });
+await mkdir('dist', { recursive: true });
 
 for (const name of handlers) {
   const outfile = `dist/${name}.js`;
@@ -28,8 +38,5 @@ for (const name of handlers) {
     target: 'node20',
     outfile,
   });
-  const zip = createWriteStream(`dist/${name}.zip`);
-  const input = createReadStream(outfile);
-  const gzipper = gzip();
-  await pipeline(input, gzipper, zip);
+  await execFileAsync('zip', ['-j', `dist/${name}.zip`, outfile]);
 }
