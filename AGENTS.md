@@ -78,7 +78,6 @@ Generate **exact, runnable code and IaC** in a single pass.
 * **Observability:** Structured JSON logs to CloudWatch, X-Ray tracing, custom
   metric `CustomerOpsDuration`.
 * **Docs:** Keep README up to date with build and deploy commands.
-* **FAST-FAIL POLICY:** If any tool exits non-zero, immediately surface the error and propose fixes in the next assistant message before continuing.
 * **HTTP CLIENT TEST FILES GUIDELINE** Create “`.http`” files under `test/http/` to define request/response examples recognised by the JetBrains HTTP-client. These files serve as living documentation and smoke tests that can be executed directly from the IDE or CI.
 * **METADATA HEADERS:** Every **source file** created by the agent **must start** with a Markdown-style metadata
   header capturing provenance and intent.
