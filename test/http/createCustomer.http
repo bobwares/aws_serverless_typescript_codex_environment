@@ -1,0 +1,10 @@
+POST http://localhost/customers
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "emails": ["jane@example.com"],
+  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": true}
+}
