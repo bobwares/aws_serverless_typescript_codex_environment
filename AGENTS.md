@@ -36,26 +36,26 @@ Generate **exact, runnable code and IaC** in a single pass.
 
 ### 3  STRATEGIC CHAIN-OF-THOUGHT WORKFLOW
 1. **Strategy Elicitation**
-   * Think step-by-step in public.
-   * Emit a numbered **Strategy** paragraph (≤ 15 lines) covering folder layout, IaC modules, key schema, build pipeline, tests, and observability.
-   * **No code** appears here.
+    * Think step-by-step in public.
+    * Emit a numbered **Strategy** paragraph (≤ 15 lines) covering folder layout, IaC modules, key schema, build pipeline, tests, and observability.
+    * **No code** appears here.
 
 2. **Guided Code Generation**
-   * Follow the Strategy verbatim.
-   * **Every file MUST start with the Metadata Header defined in § 8.**
-   * Output each project artifact **file-by-file** using the pattern:
-     ```
-     <relative/path/FileName.ext>
-     ```
-     ```<language>
-     // complete file (including metadata header)
-     ```  
-   * Terraform root & sub-modules must include **main.tf**, **variables.tf**, and **outputs.tf**.
-   * No placeholders or ellipses. The project must pass `npm_test` & `terraform_validate` out-of-the-box.
+    * Follow the Strategy verbatim.
+    * **Every file MUST start with the Metadata Header defined in § 8.**
+    * Output each project artifact **file-by-file** using the pattern:
+      ```
+      <relative/path/FileName.ext>
+      ```
+      ```<language>
+      // complete file (including metadata header)
+      ```  
+    * Terraform root & sub-modules must include **main.tf**, **variables.tf**, and **outputs.tf**.
+    * No placeholders or ellipses. The project must pass `npm_test` & `terraform_validate` out-of-the-box.
 
 3. **Post-Generation Validation**
-   * Run **npm_lint → npm_test → terraform_validate**.
-   * On any failure: diagnose, fix the specific files, and re-emit only the changed files plus a brief “Patch” strategy note.
+    * Run **npm_lint → npm_test → terraform_validate**.
+    * On any failure: diagnose, fix the specific files, and re-emit only the changed files plus a brief “Patch” strategy note.
 
 ---
 
@@ -98,10 +98,10 @@ User
 # TASK – CRUD CustomerProfile API
 
 Requirements:
+- complete unit and integration tests 
 - Async REST (POST/PUT/PATCH/DELETE return 202 Accepted + pollable operation)
 - Validation against customerProfile.schema.json
 - Search by `email` via GSI
-- Secure with Cognito JWT (authorization stub only)
 - Output Terraform + full application layout
 ````
 
@@ -109,7 +109,7 @@ Requirements:
 Assistant
 =========
 ### Strategy
-1. Layout: `infra/`, `infra/modules/`, `src/handlers/`, `src/lib/`, `schema/`, `test/`, `.github/`.
+1. Layout: `iac/`, `iac/modules/`, `src/handlers/`, `src/lib/`, `schema/`, `test/`, `.github/`.
 2. Terraform (root): **main.tf, variables.tf, outputs.tf**.  
    Modules: DynamoDB, Lambda, API Gateway — each with the same three-file structure.
 3. Table design: `pk = "CUS#<id>"`, `sk = "PROFILE"`; GSI `email` on `gsi1` for lookups.
@@ -124,7 +124,7 @@ Assistant
 
 # --- Begin File-by-File Output ---
 
-infra/main.tf
+infra/main.tfƒ
 ```
 
 ```hcl
@@ -169,9 +169,6 @@ infra/outputs.tf
 
 *…assistant continues emitting all remaining files, each beginning with a metadata header,
 until the project is complete.*
-
-```
-```
 
 ---
 
