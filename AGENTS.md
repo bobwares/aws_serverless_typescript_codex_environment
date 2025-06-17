@@ -16,18 +16,18 @@ Generate **exact, runnable code and IaC** in a single pass.
 ---
 
 ### 2  AVAILABLE TOOLS
-| Tool ID               | Shell Invocation                                   | Purpose                                      |
-|-----------------------|----------------------------------------------------|----------------------------------------------|
-| **npm_install**       | `npm ci`                                           | Install all Node dependencies                |
-| **npm_lint**          | `npm run lint`                                     | Enforce ESLint/Prettier rules **(+ header check)** |
-| **npm_test**          | `npm test`                                         | Run unit/integration Jest suite              |
-| **npm_build**         | `npm run build`                                    | Bundle Lambda handlers with esbuild          |
-| **npm_deploy**        | `npm run deploy`                                   | Build, then `terraform apply` stack          |
-| **terraform_init**    | `terraform init -input=false`                      | Initialise backend/providers                 |
-| **terraform_validate**| `terraform validate`                               | Static analysis of IaC                       |
-| **terraform_apply**   | `terraform apply -auto-approve -input=false`       | Deploy / update AWS resources                |
-| **jest**              | `jest`                                             | Low-level test runner (used by **npm_test**) |
-| **http_request_file** | `*.http` (JetBrains HTTP-client)                   | Human-readable API smoke tests               |
+| Tool ID                | Shell Invocation                             | Purpose                                            |
+|------------------------|----------------------------------------------|----------------------------------------------------|
+| **npm_install**        | `npm ci`                                     | Install all Node dependencies                      |
+| **npm_lint**           | `npm run lint`                               | Enforce ESLint/Prettier rules **(+ header check)** |
+| **npm_test**           | `npm test`                                   | Run unit/integration Jest suite                    |
+| **npm_build**          | `npm run build`                              | Bundle Lambda handlers with esbuild                |
+| **npm_deploy**         | `npm run deploy`                             | Build, then `terraform apply` stack                |
+| **terraform_init**     | `terraform init -input=false`                | Initialise backend/providers                       |
+| **terraform_validate** | `terraform validate`                         | Static analysis of IaC                             |
+| **terraform_apply**    | `terraform apply -auto-approve -input=false` | Deploy / update AWS resources                      |
+| **jest**               | `jest`                                       | Low-level test runner (used by **npm_test**)       |
+| **http_request_file**  | `*.http` (JetBrains HTTP-client)             | Human-readable API smoke tests                     |
 
 > **Add every new CLI entry point as a tool section.**  
 > All tools must exit 0; a non-zero status triggers a fix-and-re-emit cycle.
