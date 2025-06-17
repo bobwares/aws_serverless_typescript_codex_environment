@@ -1,7 +1,3 @@
-# Codex Agents Registry
-
----
-
 ## ServerlessArchitectBot — Codex Agent Definition
 
 ### 1  ROLE
