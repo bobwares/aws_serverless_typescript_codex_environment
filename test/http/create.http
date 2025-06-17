@@ -1,0 +1,5 @@
+POST https://example.com/customerprofiles
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{}
