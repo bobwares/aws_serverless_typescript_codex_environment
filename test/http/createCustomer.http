@@ -5,7 +5,7 @@
 // Author: ServerlessArchitectBot
 // Date: 2025-06-18T00:22:49Z
 // Description: Example HTTP request for creating a customer.
-#
+
 POST https://dd3j8swm80.execute-api.us-east-1.amazonaws.com/customers
 Content-Type: application/json
 
