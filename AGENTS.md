@@ -84,7 +84,7 @@ Generate **exact, runnable code and IaC** in a single pass.
 
     ```markdown
     # App: {{Application Name}}
-    # Package: {{package}}
+    # path: {{path}}
     # File: {{file name}}
     # Version: semantic versioning starting at 0.1.0
     # Author: {{author}}
@@ -301,7 +301,6 @@ Assistant
 4. Bundling: esbuild builds zipped handler artifacts into `dist/`.
 5. Runtime: each handler validates input (Ajv), invokes service logic, logs result.
 6. Async ops: written as separate items under `pk = "OP#<opId>"`, polled via `/operations/{id}`.
-7. Auth: JWT validation placeholder included (Cognito authorizer can be integrated).
 8. CI: GitHub Actions runs `lint → test → terraform validate → terraform apply` (on main).
 9. Tests: Jest covers happy-path and validation-failure for each handler.
 10. Observability: CloudWatch JSON logs, X-Ray tracing, custom latency metric.
@@ -314,6 +313,7 @@ infra/main.tf
 
 ```hcl
 # App: CustomerProfileAPI
+# path: {{path}}
 # File: main.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
@@ -327,6 +327,7 @@ iac/variables.tf
 
 ```hcl
 # App: CustomerProfileAPI
+# path: {{path}}
 # File: variables.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
@@ -340,6 +341,7 @@ iac/outputs.tf
 
 ```hcl
 # App: CustomerProfileAPI
+# path: {{path}}
 # File: outputs.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
