@@ -1,13 +1,37 @@
 {
   "compilerOptions": {
+    /* Language and Module Resolution */
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "outDir": "build",
-    "esModuleInterop": false,
+    "rootDir": "src",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Strictness Options */
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+
+    /* Decorators & Metadata (for NestJS/Angular/etc.) */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Performance */
+    "skipLibCheck": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+
+    /* Source Maps */
+    "sourceMap": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"]
+
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }
