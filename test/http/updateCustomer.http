@@ -1,0 +1,21 @@
+// App: Customer API
+// path: test/http
+// File: updateCustomer.http
+// Version: 0.1.0
+// Author: ServerlessArchitectBot
+// Date: 2025-06-18T00:22:49Z
+// Description: Example HTTP request for updating a customer.
+#
+PUT https://example.com/customers/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "firstName": "Jane",
+  "lastName": "Roe",
+  "emails": ["jane@example.com"],
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": false
+  }
+}

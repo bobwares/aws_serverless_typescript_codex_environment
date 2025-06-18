@@ -22,10 +22,10 @@ Generate **exact, runnable code and IaC** in a single pass.
 | **npm_lint**           | `npm run lint`                               | Enforce ESLint/Prettier rules **(+ header check)** |
 | **npm_test**           | `npm test`                                   | Run unit/integration Jest suite                    |
 | **npm_build**          | `npm run build`                              | Bundle Lambda handlers with esbuild                |
-| **npm_deploy**         | `npm run deploy`                             | Build, then `terraform apply` stack                |
-| **terraform_init**     | `terraform init -input=false`                | Initialise backend/providers                       |
-| **terraform_validate** | `terraform validate`                         | Static analysis of IaC                             |
-| **terraform_apply**    | `terraform apply -auto-approve -input=false` | Deploy / update AWS resources                      |
+| **npm_deploy**         | `npm run deploy`                             | Build then `terraform -chdir=iac apply` stack      |
+| **terraform_init**     | `terraform -chdir=iac init -input=false`     | Initialise backend/providers                       |
+| **terraform_validate** | `terraform -chdir=iac validate`              | Static analysis of IaC in `iac/`                   |
+| **terraform_apply**    | `terraform -chdir=iac apply -auto-approve -input=false` | Deploy / update AWS resources                      |
 | **jest**               | `jest`                                       | Low-level test runner (used by **npm_test**)       |
 | **http_request_file**  | `*.http` (JetBrains HTTP-client)             | Human-readable API smoke tests                     |
 
@@ -64,7 +64,7 @@ Generate **exact, runnable code and IaC** in a single pass.
 * **Terraform provider:** `aws ~> 5`; backend local unless caller overrides.
 * **Terraform file set:** each module (root or child) **MUST** declare `main.tf`, `variables.tf`, and `outputs.tf`; keep variables & outputs explicit, documented, and alphabetised.
 * **DynamoDB table:** `pk` & `sk`; GSI `gsi1` (`email`).
-* **Security:** Least-privilege IAM; AWS-managed policies only when unavoidable.
+* **Security:** Least-privilege IAM. Avoid wildcard actions like `dynamodb:*`; grant only the specific read/write permissions required.
 * **Validation:** Ajv v8 strict; 400 on first schema violation.
 * **Testing:** Jest; each `.ts` file must have a matching `*.test.ts` file. Each
   handler requires ≥ 1 happy-path and ≥ 1 validation-failure test.
@@ -75,12 +75,12 @@ Generate **exact, runnable code and IaC** in a single pass.
   handler) referenced by Terraform via `filename`.
 * **NPM Scripts:** avoid inline shell comments; document commands in `README`
   instead.
-* **Observability:** Structured JSON logs to CloudWatch, X-Ray tracing, custom
-  metric `CustomerOpsDuration`.
+* **Observability:** Log structured JSON using CloudWatch EMF, enable X-Ray tracing and emit the `CustomerOpsDuration` metric (ms).
 * **Docs:** Keep README up to date with build and deploy commands.
 * **HTTP CLIENT TEST FILES GUIDELINE** Create “`.http`” files under `test/http/` to define request/response examples recognised by the JetBrains HTTP-client. These files serve as living documentation and smoke tests that can be executed directly from the IDE or CI.
 * **METADATA HEADERS:** Every **source file** created by the agent **must start** with a Markdown-style metadata
-  header capturing provenance and intent.
+  header capturing provenance and intent. Use the `#` prefix exactly and wrap the
+  block in language comments when necessary (e.g. `/* ... */` in TypeScript).
 
     ```markdown
     # App: {{Application Name}}
