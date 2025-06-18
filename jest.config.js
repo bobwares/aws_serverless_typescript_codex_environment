@@ -1,9 +1,23 @@
+// App: Full-Stack Application
+// Directory: api
+// File: jest.config.js
+// Version: 1.0.0
+// Author: Bobwares CodeBot
+// Date: 2025-06-12T06:58:30Z
+// Description: Configure Jest testing framework with ES module support.
+
 /**
  * @type {import('jest').Config}
  */
-module.exports = {
-  preset: 'ts-jest',
+export default {
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
+  extensionsToTreatAsEsm: ['.ts'],
+  globals: {
+    'ts-jest': {
+      useESM: true
+    }
+  },
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.test.ts', '**/?(*.)+(spec|test).ts?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

@@ -1,11 +1,10 @@
 // App: Full-Stack Application
-// Package: api
+// Directory: api
 // File: eslint.config.js
-// Version: 0.0.8
+// Version: 1.0.0
 // Author: Bobwares CodeBot
 // Date: 2025-06-12T06:58:30Z
 // Description: Configure ESLint using the flat config format.
-//
 
 import typescriptParser from '@typescript-eslint/parser';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
