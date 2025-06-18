@@ -6,4 +6,4 @@
 // Date: 2025-06-18T00:22:49Z
 // Description: Example HTTP request for retrieving a customer.
 #
-GET https://example.com/customers/123e4567-e89b-12d3-a456-426614174000
+GET https://dd3j8swm80.execute-api.us-east-1.amazonaws.com/customers/123e4567-e89b-12d3-a456-426614174000

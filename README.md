@@ -13,7 +13,7 @@ npm ci
 npm run lint
 npm test
 npm run build
-npm run deploy # applies Terraform
+npm run deploy 
 ```
 
 The build command bundles each Lambda into a zip file under `dist/`. Deployment
