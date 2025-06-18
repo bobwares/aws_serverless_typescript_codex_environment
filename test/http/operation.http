@@ -1,0 +1,4 @@
+###
+GET {{API_URL}}/operations/{{OP_ID}}
+
+> {%.status==200%}
