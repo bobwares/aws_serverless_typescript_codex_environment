@@ -102,7 +102,7 @@ Generate **exact, runnable code and IaC** in a single pass.
 * **Versioning Rules:**
 
       * Use **semantic versioning** (`MAJOR.MINOR.PATCH`).
-      * Track changes each “AI turn” in `project_root/version.md`.
+      * Track changes each “AI turn” in `project_root/changelog.md`.
       * Start at **0.1.0**; update only when code or configuration changes.
       * Record only the sections that changed.
 
