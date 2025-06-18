@@ -1,0 +1,9 @@
+// App: Customer API
+// path: test/http
+// File: searchCustomer.http
+// Version: 0.1.0
+// Author: ServerlessArchitectBot
+// Date: 2025-06-18T00:22:49Z
+// Description: Example HTTP request for searching a customer by email.
+#
+GET https://example.com/customers?email=jane@example.com
