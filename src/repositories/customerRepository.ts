@@ -10,7 +10,6 @@ import { ddb } from '../utils/db';
 import {
   PutCommand,
   GetCommand,
-  UpdateCommand,
   DeleteCommand,
   QueryCommand,
 } from '@aws-sdk/lib-dynamodb';

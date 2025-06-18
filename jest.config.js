@@ -1,11 +1,27 @@
-/**
- * @type {import('jest').Config}
- */
-module.exports = {
-  preset: 'ts-jest',
+/** @type {import('jest').Config} */
+export default {
+  // Use the ESM-aware preset
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
-  roots: ['<rootDir>/src'],
-  testMatch: ['**/__tests__/**/*.test.ts', '**/?(*.)+(spec|test).ts?(x)'],
+  extensionsToTreatAsEsm: ['.ts'],
+
+  // Let ts-jest read the real tsconfig instead of an inline override
+  injectGlobals: true,
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: './tsconfig.json'
+      }
+    ]
+  },
+  moduleNameMapper: {
+    // keep relative imports intact (e.g., './foo.js' → './foo')
+    '^(\\.{1,2}/.*)\\.js$': '$1'
+  },
+  roots: ['<rootDir>/src', '<rootDir>/test'],
+  testMatch: ['**/test/unit/**/*.test.ts', '**/test/unit/**/*.spec.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',

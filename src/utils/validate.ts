@@ -6,16 +6,28 @@
 // Date: 2025-06-18
 // Description: Ajv validation for customer profile schema.
 
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import Ajv from 'ajv';
-import schema from '../customerProfile.schema.json' assert { type: 'json' };
+import addFormats from 'ajv-formats';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load schema synchronously
+const schemaPath = join(__dirname, '../customerProfile.schema.json');
+const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
 
 const ajv = new Ajv({ allErrors: true });
+addFormats(ajv);
+
 const validate = ajv.compile(schema);
+
 
 export function validateProfile(data: unknown): void {
   const valid = validate(data);
   if (!valid) {
-    const errorText = ajv.errorsText(validate.errors);
-    throw new Error(`Schema validation failed: ${errorText}`);
+    throw new Error(`Validation failed: ${JSON.stringify(validate.errors)}`);
   }
 }
