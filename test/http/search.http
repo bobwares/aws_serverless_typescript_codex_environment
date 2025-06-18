@@ -1,0 +1,4 @@
+###
+GET {{API_URL}}/customers?email=jane@example.com
+
+> {%.status==200%}
