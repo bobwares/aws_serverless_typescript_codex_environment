@@ -1,0 +1,30 @@
+{
+  "name": "customer-profile-api",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint \"**/*.ts\"",
+    "test": "jest",
+    "build": "node esbuild.mjs",
+    "deploy": "npm run build && terraform apply -auto-approve -input=false"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.3",
+    "ajv": "^8.17.1",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.0",
+    "jest": "^30.0.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3",
+    "@eslint/js": "^9.29.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.830.0",
+    "@aws-sdk/lib-dynamodb": "^3.830.0",
+    "uuid": "^11.1.0"
+  }
+}
