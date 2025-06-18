@@ -5,7 +5,7 @@
 // Author: ServerlessArchitectBot
 // Date: 2025-06-18T00:22:49Z
 // Description: Input variables required by the API Gateway module.
-#
+
 variable "api_name" {
   description = "Name for the HTTP API"
   type        = string

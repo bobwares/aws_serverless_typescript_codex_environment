@@ -6,7 +6,7 @@
 // Date: 2025-06-18T00:22:49Z
 // Description: Outputs from the root Terraform module exposing key
 //              resource identifiers for external consumption.
-#
+
 output "table_name" {
   description = "DynamoDB table name"
   value       = module.dynamodb.table_name

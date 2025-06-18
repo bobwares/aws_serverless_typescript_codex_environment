@@ -5,7 +5,7 @@
 // Author: ServerlessArchitectBot
 // Date: 2025-06-18T00:22:49Z
 // Description: Outputs for API Gateway module exposing the endpoint URL.
-#
+
 output "endpoint" {
   description = "HTTP API endpoint"
   value       = aws_apigatewayv2_api.this.api_endpoint

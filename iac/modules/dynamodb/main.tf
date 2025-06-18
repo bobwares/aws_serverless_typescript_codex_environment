@@ -6,7 +6,7 @@
 // Date: 2025-06-18T00:22:49Z
 // Description: Terraform module creating the DynamoDB table used for
 //              storing customer profiles and operation records.
-#
+
 resource "aws_dynamodb_table" "this" {
   name         = var.table_name
   billing_mode = "PAY_PER_REQUEST"

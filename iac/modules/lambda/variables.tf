@@ -5,7 +5,7 @@
 // Author: ServerlessArchitectBot
 // Date: 2025-06-18T00:22:49Z
 // Description: Input variables for the Lambda module.
-#
+
 variable "function_name" {
   description = "Lambda function name"
   type        = string

@@ -6,7 +6,7 @@
 // Date: 2025-06-18T00:22:49Z
 // Description: Terraform module for deploying a single Lambda function
 //              with permissions to access the DynamoDB table.
-#
+
 resource "aws_iam_role" "lambda_role" {
   name = "${var.function_name}-role"
   assume_role_policy = jsonencode({

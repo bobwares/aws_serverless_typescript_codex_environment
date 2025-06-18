@@ -7,7 +7,7 @@
 // Description: Root Terraform module configuring providers and composing
 //              DynamoDB, Lambda and API Gateway modules for the
 //              CustomerProfile API.
-#
+
 terraform {
   required_version = ">= 1.8"
   required_providers {

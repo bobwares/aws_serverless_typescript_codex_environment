@@ -6,7 +6,7 @@
 // Date: 2025-06-18T00:22:49Z
 // Description: Terraform module creating API Gateway HTTP API with routes
 //              integrated to the various Lambda functions.
-#
+
 resource "aws_apigatewayv2_api" "this" {
   name          = var.api_name
   protocol_type = "HTTP"

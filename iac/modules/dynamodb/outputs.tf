@@ -5,7 +5,7 @@
 // Author: ServerlessArchitectBot
 // Date: 2025-06-18T00:22:49Z
 // Description: Outputs for DynamoDB module exposing table name and ARN.
-#
+
 output "table_name" {
   description = "DynamoDB table name"
   value       = aws_dynamodb_table.this.name
