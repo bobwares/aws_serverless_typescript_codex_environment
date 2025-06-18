@@ -309,12 +309,11 @@ Assistant
 
 # --- Begin File-by-File Output ---
 
-infra/main.tfƒ
+infra/main.tf
 ```
 
 ```hcl
 # App: CustomerProfileAPI
-# Package: infra
 # File: main.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
@@ -324,11 +323,10 @@ infra/main.tfƒ
 # Terraform root module defining resources
 ```
 
-infra/variables.tf
+iac/variables.tf
 
 ```hcl
 # App: CustomerProfileAPI
-# Package: infra
 # File: variables.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
@@ -338,11 +336,10 @@ infra/variables.tf
 # Example variable declarations...
 ```
 
-infra/outputs.tf
+iac/outputs.tf
 
 ```hcl
 # App: CustomerProfileAPI
-# Package: infra
 # File: outputs.tf
 # Version: 0.1.0
 # Author: ServerlessArchitectBot
