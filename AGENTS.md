@@ -212,11 +212,11 @@ Copy this template into every PR description and fill in each placeholder.
 
 The agent executes task files sequentially, halting on any lint or test failure.
 
-| Order | Task File                             | Objective                                                                                                          |
-| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **1** | **Task 01 – Generate Source Code.md** | Scaffold and implement all TypeScript Lambda handlers, service layer, and validation logic.                        |
-| **2** | **Task 02 – Generate Unit-Tests.md**  | Produce Jest unit & integration tests (≥ 90 % coverage) and one `.http` file per CRUD action, then run `npm test`. |
-| **3** | **Task 03 – Generate Terraform.md**   | Build Terraform under `iac/` for API Gateway, Lambda, DynamoDB, remote-state placeholders, tags, and outputs.      |
+| Order | Task File                                                     | Objective                                                                                                          |
+|-------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| **1** | **Task 01 – Generate Source Code for CRUD Serverless App.md** | Scaffold and implement all TypeScript Lambda handlers, service layer, and validation logic.                        |
+| **2** | **Task 02 – Generate Unit Tests.md**                          | Produce Jest unit & integration tests (≥ 90 % coverage) and one `.http` file per CRUD action, then run `npm test`. |
+| **3** | **Task 03 – Generate Terraform Infrastructure.md**            | Build Terraform under `iac/` for API Gateway, Lambda, DynamoDB, remote-state placeholders, tags, and outputs.      |
 
 Each task file template:
 
