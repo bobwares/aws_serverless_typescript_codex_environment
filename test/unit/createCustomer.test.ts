@@ -11,7 +11,7 @@ import type { CustomerProfile } from '../../src/types';
 import { PutCommand } from '@aws-sdk/lib-dynamodb';
 
 /* typed mock — returns a Promise */
-const sendMock = jest.fn<Promise<any>>();
+const sendMock = jest.fn() as any;
 
 jest.unstable_mockModule('../../src/utils/db', () => ({
   ddb: { send: sendMock }
