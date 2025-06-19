@@ -1,25 +1,27 @@
-// App: Full-Stack Application
-// Directory: api
-// File: jest.config.js
-// Version: 1.0.0
-// Author: Bobwares CodeBot
-// Date: 2025-06-12T06:58:30Z
-// Description: Configure Jest testing framework with ES module support.
-
-/**
- * @type {import('jest').Config}
- */
+/** @type {import('jest').Config} */
 export default {
+  // Use the ESM-aware preset
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
+
+  // Let ts-jest read the real tsconfig instead of an inline override
+  injectGlobals: true,
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: './tsconfig.json'
+      }
+    ]
   },
-  roots: ['<rootDir>/src'],
-  testMatch: ['**/__tests__/**/*.test.ts', '**/?(*.)+(spec|test).ts?(x)'],
+  moduleNameMapper: {
+    // keep relative imports intact (e.g., './foo.js' → './foo')
+    '^(\\.{1,2}/.*)\\.js$': '$1'
+  },
+  roots: ['<rootDir>/src', '<rootDir>/test'],
+  testMatch: ['**/test/unit/**/*.test.ts', '**/test/unit/**/*.spec.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -27,7 +29,6 @@ export default {
     '!src/**/entities/*.ts',
     '!src/**/dtos/*.ts',
     '!src/**/migrations/**',
-    '!src/**/customers.repository.ts',
     '!src/**/*.module.ts',
     '!src/logging/request-id.middleware.ts',
     '!src/health/*.ts',

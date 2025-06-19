@@ -2,8 +2,8 @@
   "compilerOptions": {
     /* Language and Module Resolution */
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "es2022",
+    "moduleResolution": "nodenext",
     "rootDir": "src",
     "outDir": "dist",
     "resolveJsonModule": true,
@@ -31,7 +31,6 @@
     /* Source Maps */
     "sourceMap": true
   },
-
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

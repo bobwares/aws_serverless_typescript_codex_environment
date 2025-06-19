@@ -1,26 +1,31 @@
 {
-  "name": "customer-profile-api",
+  "name": "aws-serverless-app",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "lint": "eslint \"**/*.ts\"",
-    "test": "jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:watch": "npm run test -- --watch",
     "build": "node esbuild.mjs",
     "deploy": "npm run build && terraform apply -auto-approve -input=false"
   },
   "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@types/aws-lambda": "^8.10.150",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
-    "ajv": "^8.17.1",
-    "esbuild": "^0.25.5",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.0",
-    "jest": "^30.0.0",
-    "prettier": "^3.5.3",
+    "@typescript-eslint/parser": "^8.34.1",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "jest": "^29.7.0",
+    "ajv-formats": "^3.0.0",
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3",
-    "@eslint/js": "^9.29.0"
+    "ajv": "^8.17.1",
+    "esbuild": "^0.25.5",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.830.0",
