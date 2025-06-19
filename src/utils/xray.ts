@@ -9,8 +9,8 @@
  *              available. Ensures segments are properly closed.
  */
 
-import { captureAWSv3Client } from 'aws-xray-sdk-core';
-import type { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { captureAWSv3Client } from "aws-xray-sdk-core";
+import type { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 
 export function withXRay<T extends DynamoDBClient>(client: T): T {
   return captureAWSv3Client(client);

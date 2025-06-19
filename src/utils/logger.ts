@@ -16,24 +16,26 @@ export interface Logger {
 
 export function createLogger(requestId: string): Logger {
   const base = { requestId };
-  const isDev = process.env.NODE_ENV === 'dev';
+  const isDev = process.env.NODE_ENV === "dev";
 
   return {
     debug(message, meta = {}): void {
       if (isDev) {
-        console.debug(JSON.stringify({ level: 'DEBUG', message, ...base, ...meta }));
+        console.debug(
+          JSON.stringify({ level: "DEBUG", message, ...base, ...meta }),
+        );
       }
     },
     error(error, meta = {}): void {
       console.error(
         JSON.stringify({
-          level: 'ERROR',
+          level: "ERROR",
           message: error.message,
           stack: error.stack,
           ...base,
-          ...meta
-        })
+          ...meta,
+        }),
       );
-    }
+    },
   };
 }

@@ -8,9 +8,9 @@
  * Description: Lambda handler to list all customer profiles.
  */
 
-import type { APIGatewayProxyEventV2 } from 'aws-lambda';
-import { listCustomers } from '../services/customerService.js';
-import { createLogger } from '../utils/logger.js';
+import type { APIGatewayProxyEventV2 } from "aws-lambda";
+import { listCustomers } from "../services/customerService.js";
+import { createLogger } from "../utils/logger.js";
 
 export const handler = async (event: APIGatewayProxyEventV2) => {
   const logger = createLogger(event.requestContext.requestId);
@@ -18,10 +18,10 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
     const customers = await listCustomers();
     return {
       statusCode: 200,
-      body: JSON.stringify(customers)
+      body: JSON.stringify(customers),
     };
   } catch (err) {
     logger.error(err as Error);
-    return { statusCode: 500, body: 'Internal Server Error' };
+    return { statusCode: 500, body: "Internal Server Error" };
   }
 };

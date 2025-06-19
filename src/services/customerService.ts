@@ -9,10 +9,17 @@
  *              DynamoDB single-table design.
  */
 
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, PutCommand, GetCommand, UpdateCommand, DeleteCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
-import { v4 as uuid } from 'uuid';
-import { withXRay } from '../utils/xray.js';
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import {
+  DynamoDBDocumentClient,
+  PutCommand,
+  GetCommand,
+  UpdateCommand,
+  DeleteCommand,
+  ScanCommand,
+} from "@aws-sdk/lib-dynamodb";
+import { v4 as uuid } from "uuid";
+import { withXRay } from "../utils/xray.js";
 
 export interface CustomerProfile {
   id: string;
@@ -43,44 +50,69 @@ function toDbItem(profile: CustomerProfile) {
   return {
     pk: `CUSTOMER#${profile.id}`,
     sk: `PROFILE#${profile.id}`,
-    gsi1pk: 'PROFILE',
+    gsi1pk: "PROFILE",
     gsi1sk: profile.emails[0],
-    ...profile
+    ...profile,
   };
 }
 
-export async function createCustomer(profile: Omit<CustomerProfile, 'id'>): Promise<CustomerProfile> {
+export async function createCustomer(
+  profile: Omit<CustomerProfile, "id">,
+): Promise<CustomerProfile> {
   const item = { ...profile, id: uuid() } as CustomerProfile;
-  await ddb.send(new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(item) }));
+  await ddb.send(
+    new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(item) }),
+  );
   return item;
 }
 
 export async function getCustomer(id: string): Promise<CustomerProfile | null> {
   const res = await ddb.send(
-    new GetCommand({ TableName: TABLE_NAME, Key: { pk: `CUSTOMER#${id}`, sk: `PROFILE#${id}` } })
+    new GetCommand({
+      TableName: TABLE_NAME,
+      Key: { pk: `CUSTOMER#${id}`, sk: `PROFILE#${id}` },
+    }),
   );
   return (res.Item as CustomerProfile) ?? null;
 }
 
-export async function updateCustomer(profile: CustomerProfile): Promise<CustomerProfile> {
-  await ddb.send(new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(profile) }));
+export async function updateCustomer(
+  profile: CustomerProfile,
+): Promise<CustomerProfile> {
+  await ddb.send(
+    new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(profile) }),
+  );
   return profile;
 }
 
-export async function patchCustomer(id: string, partial: Partial<CustomerProfile>): Promise<CustomerProfile> {
-  const existing = (await getCustomer(id)) ?? { id } as CustomerProfile;
+export async function patchCustomer(
+  id: string,
+  partial: Partial<CustomerProfile>,
+): Promise<CustomerProfile> {
+  const existing = (await getCustomer(id)) ?? ({ id } as CustomerProfile);
   const updated = { ...existing, ...partial } as CustomerProfile;
-  await ddb.send(new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(updated) }));
+  await ddb.send(
+    new PutCommand({ TableName: TABLE_NAME, Item: toDbItem(updated) }),
+  );
   return updated;
 }
 
 export async function deleteCustomer(id: string): Promise<void> {
   await ddb.send(
-    new DeleteCommand({ TableName: TABLE_NAME, Key: { pk: `CUSTOMER#${id}`, sk: `PROFILE#${id}` } })
+    new DeleteCommand({
+      TableName: TABLE_NAME,
+      Key: { pk: `CUSTOMER#${id}`, sk: `PROFILE#${id}` },
+    }),
   );
 }
 
 export async function listCustomers(): Promise<CustomerProfile[]> {
-  const res = await ddb.send(new ScanCommand({ TableName: TABLE_NAME, FilterExpression: 'begins_with(pk, :prefix)', ExpressionAttributeValues: { ':prefix': 'CUSTOMER#' } }));
+  const res = await ddb.send(
+    new ScanCommand({
+      TableName: TABLE_NAME,
+      FilterExpression: "begins_with(pk, :prefix)",
+      ExpressionAttributeValues: { ":prefix": "CUSTOMER#" },
+    }),
+  );
   return (res.Items as CustomerProfile[]) ?? [];
 }
