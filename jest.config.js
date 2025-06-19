@@ -29,7 +29,6 @@ export default {
     '!src/**/entities/*.ts',
     '!src/**/dtos/*.ts',
     '!src/**/migrations/**',
-    '!src/**/customers.repository.ts',
     '!src/**/*.module.ts',
     '!src/logging/request-id.middleware.ts',
     '!src/health/*.ts',

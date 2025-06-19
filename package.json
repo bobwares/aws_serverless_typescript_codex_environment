@@ -1,5 +1,5 @@
 {
-  "name": "customer-profile-api",
+  "name": "aws-serverless-app",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
