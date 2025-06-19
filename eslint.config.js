@@ -30,7 +30,6 @@ export default [
         sourceType: 'module',
       },
     },
-    parser,
     plugins: {
       '@typescript-eslint': typescriptPlugin,
       prettier: prettierPlugin,
