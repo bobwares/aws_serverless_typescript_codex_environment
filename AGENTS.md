@@ -208,10 +208,12 @@ Copy this template into every PR description and fill in each placeholder.
 ```
 ---
 
-## 3  TASK DECOMPOSITION (`tasks/` directory)
+## 3  TASK ORCHESTRATION 
 
-The agent executes task files sequentially, halting on any lint or test failure.
-
+- Tasks are contained in markdown files in the project_root/tasks directory.
+- The agent executes each task sequentially. ie TASK 01, TASK 02, TASK 03, etc.
+- If task fails record the failure in the session memory.
+ 
 | Order | Task File                                                     | Objective                                                                                                          |
 |-------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **1** | **Task 01 – Generate Source Code for CRUD Serverless App.md** | Scaffold and implement all TypeScript Lambda handlers, service layer, and validation logic.                        |

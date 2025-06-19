@@ -18,18 +18,19 @@ All code must:
 ## Inputs
 
 | Path / Reference             | Purpose                                                                |
-| ---------------------------- | ---------------------------------------------------------------------- |
+|------------------------------|------------------------------------------------------------------------|
 | **User input** (JSON Schema) | Domain model for CRUD entities; must be saved as `schema/domain.json`. |
 | `package.json`               | Locked runtime and tooling versions                                    |
 | `session_memory/*.md`        | Persisted context from prior tasks                                     |
 
 ## Tools
 
-| Tool ID      | Shell Invocation | Purpose                     |
-| ------------ | ---------------- | --------------------------- |
-| npm\_install | `npm ci`         | Install dependencies        |
-| npm\_lint    | `npm run lint`   | ESLint / Prettier check     |
-| npm\_build   | `npm run build`  | Production bundle (esbuild) |
+| Tool ID      | Shell Invocation | Purpose                                                                 |
+|--------------|------------------|-------------------------------------------------------------------------|
+| npm\_install | `npm install`    | Install dependencies                                                    |
+| npm\_lint    | `npm run lint`   | ESLint / Prettier check. If warning or errors, then fix code and rerun. |
+| npm\_build   | `npm run build`  | Production bundle (esbuild). If errors, then fix code and rereun.       |
+| npm\test     | `npm run test`   | DO NOT RUN FOR THIS TASK.                                               |
 
 ## Acceptance Criteria
 

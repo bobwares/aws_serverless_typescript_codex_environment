@@ -27,20 +27,20 @@ Terraform code must:
 
 ## Tools
 
-| Tool ID             | Shell Invocation                      | Purpose                                  |
-| ------------------- | ------------------------------------- | ---------------------------------------- |
-| terraform\_init     | `terraform -chdir=iac init`           | Initialise backend / providers           |
-| terraform\_validate | `terraform -chdir=iac validate`       | Static analysis of Terraform code        |
-| terraform\_fmt      | `terraform -chdir=iac fmt -recursive` | Enforce canonical formatting             |
-| tflint              | `tflint -chdir=iac`                   | Terraform linting / best-practice checks |
-| file\_write         | *virtual*                             | Create / overwrite files in `iac/`       |
+| Tool ID             | Shell Invocation           | Purpose                                  |
+|---------------------|----------------------------|------------------------------------------|
+| terraform\_init     | `terraform init`           | Initialise backend / providers           |
+| terraform\_validate | `terraform  validate`      | Static analysis of Terraform code        |
+| terraform\_fmt      | `terraform fmt -recursive` | Enforce canonical formatting             |
+| tflint              | `tflint`                   | Terraform linting / best-practice checks |
+| file\_write         | *virtual*                  | Create / overwrite files in `iac/`       |
 
 ## Acceptance Criteria
 
-1. `terraform -chdir=iac init` completes without error.
-2. `terraform -chdir=iac validate` reports **“Success! The configuration is valid.”**
-3. `terraform -chdir=iac fmt -recursive` produces no diff.
-4. `tflint -chdir=iac` exits with code 0 and no error-level findings.
+1. `terraform  init` completes without error.
+2. `terraform  validate` reports **“Success! The configuration is valid.”**
+3. `terraform  fmt -recursive` produces no diff.
+4. `tflint ` exits with code 0 and no error-level findings.
 5. All Lambda resources reference the correct build ZIPs and set env vars `TABLE_NAME`, `AWS_NODEJS_CONNECTION_REUSE_ENABLED=1`, and `POWERTOOLS_SERVICE_NAME`.
 6. DynamoDB table definition matches the single-table pattern with composite `pk` / `sk` and GSI `gsi1`.
 7. Remote-state bucket and lock table are referenced only in backend configuration—not provisioned.
