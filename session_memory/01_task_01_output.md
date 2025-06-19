@@ -1,0 +1,13 @@
+## Created Files
+- schema/domain.json
+- src/utils/logger.ts
+- src/utils/xray.ts
+- src/services/customerService.ts
+- src/handlers/createCustomer.ts
+- src/handlers/getCustomer.ts
+- src/handlers/updateCustomer.ts
+- src/handlers/patchCustomer.ts
+- src/handlers/deleteCustomer.ts
+- src/handlers/listCustomers.ts
+- changelog.md
+- session_memory/00_initial_input.md
