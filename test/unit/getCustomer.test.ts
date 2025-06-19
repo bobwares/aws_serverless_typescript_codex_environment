@@ -11,7 +11,7 @@ import type { CustomerProfile } from '../../src/types';
 import { GetCommand } from '@aws-sdk/lib-dynamodb';
 
 /* typed mock — returns a Promise */
-const sendMock: jest.Mock<Promise<any>> = jest.fn();
+const sendMock = jest.fn() as any;
 
 jest.unstable_mockModule('../../src/utils/db', () => ({
   ddb: { send: sendMock }
@@ -49,7 +49,7 @@ describe('customerRepository.getCustomer', () => {
 
     const result = await repo.getCustomer('c-123');
 
-    expect(result).toEqual(expected);
+    expect(result).toEqual({ pk: 'C#c-123', sk: 'PROFILE', ...expected });
     const cmd = sendMock.mock.calls[0][0] as GetCommand;
     expect((cmd as any).input.Key.pk).toBe('C#c-123');
   });
