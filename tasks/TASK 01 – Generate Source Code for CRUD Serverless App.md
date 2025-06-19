@@ -18,7 +18,7 @@ All code must:
 ## Inputs
 
 | Path / Reference             | Purpose                                                                |
-| ---------------------------- | ---------------------------------------------------------------------- |
+|------------------------------|------------------------------------------------------------------------|
 | **User input** (JSON Schema) | Domain model for CRUD entities; must be saved as `schema/domain.json`. |
 | `package.json`               | Locked runtime and tooling versions                                    |
 | `session_memory/*.md`        | Persisted context from prior tasks                                     |
