@@ -10,22 +10,34 @@
  */
 
 import { build } from 'esbuild';
-import { glob } from 'glob';
-import { dirname, join } from 'path';
+import { readdirSync, statSync } from 'fs';
+import { dirname, join, extname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const outdir = join(__dirname, 'dist/handlers');
-const entryPoints = glob.sync('src/handlers/*.ts');
+const handlersDir = join(__dirname, 'src', 'handlers');
+const outdir = join(__dirname, 'dist', 'handlers');
+
+function findTsFiles(dir) {
+  return readdirSync(dir).flatMap(name => {
+    const full = join(dir, name);
+    return statSync(full).isDirectory()
+        ? findTsFiles(full)
+        : extname(full) === '.ts' ? [full] : [];
+  });
+}
+
+const entryPoints = findTsFiles(handlersDir);
 
 for (const entry of entryPoints) {
+  const fileName = entry.split('/').pop().replace(/\.ts$/, '.mjs');
   await build({
     entryPoints: [entry],
     platform: 'node',
     bundle: true,
-    target: 'node20',
-    outfile: join(outdir, entry.split('/').pop().replace('.ts', '.mjs')),
+    target: ['node20'],
     format: 'esm',
+    outfile: join(outdir, fileName),
     sourcemap: false,
     external: ['aws-sdk'],
   });
