@@ -25,11 +25,11 @@ All code must:
 
 ## Tools
 
-| Tool ID      | Shell Invocation | Purpose                     |
-| ------------ | ---------------- | --------------------------- |
-| npm\_install | `npm ci`         | Install dependencies        |
-| npm\_lint    | `npm run lint`   | ESLint / Prettier check     |
-| npm\_build   | `npm run build`  | Production bundle (esbuild) |
+| Tool ID      | Shell Invocation | Purpose                                                                 |
+| ------------ |------------------|-------------------------------------------------------------------------|
+| npm\_install | `npm install`    | Install dependencies                                                    |
+| npm\_lint    | `npm run lint`   | ESLint / Prettier check. If warning or errors, then fix code and rerun. |
+| npm\_build   | `npm run build`  | Production bundle (esbuild). If errors, then fix code and rereun.       |
 
 ## Acceptance Criteria
 
