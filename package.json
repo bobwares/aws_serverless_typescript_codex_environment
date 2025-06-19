@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint \"**/*.ts\"",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage",
     "test:watch": "npm run test -- --watch",
     "build": "node esbuild.mjs",
     "deploy": "npm run build && terraform apply -auto-approve -input=false"

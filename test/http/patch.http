@@ -1,0 +1,15 @@
+/**
+ * App: Customer API
+ * Package: test
+ * File: patch.http
+ * Version: 0.1.0
+ * Author: ServerlessArchitectBot
+ * Date: 2025-06-19T20:30:00Z
+ * Description: Example HTTP request for partially updating a customer.
+ */
+PATCH https://example.com/customers/123
+Content-Type: application/json
+
+{
+  "firstName": "Janet"
+}

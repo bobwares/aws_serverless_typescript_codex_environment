@@ -23,6 +23,8 @@ export default {
   roots: ['<rootDir>/src', '<rootDir>/test'],
   testMatch: ['**/test/unit/**/*.test.ts', '**/test/unit/**/*.spec.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  collectCoverage: true,
+  coveragePathIgnorePatterns: ['<rootDir>/src/handlers/'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/main.ts',
