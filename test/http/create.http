@@ -1,13 +1,7 @@
-/**
- * App: Customer API
- * Package: test
- * File: create.http
- * Version: 0.1.0
- * Author: ServerlessArchitectBot
- * Date: 2025-06-19T20:30:00Z
- * Description: Example HTTP request for creating a customer.
- */
-POST https://example.com/customers
+
+
+POST https://6uwu2z82f1.execute-api.us-east-1.amazonaws.com/dev/customers
+
 Content-Type: application/json
 
 {
