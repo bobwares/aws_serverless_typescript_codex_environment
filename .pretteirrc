@@ -1,0 +1,7 @@
+// .prettierrc
+{
+  "endOfLine": "lf",
+  "singleQuote": true,        // or false, depending on your preference
+  "trailingComma": "es5",
+  "semi": true
+}
