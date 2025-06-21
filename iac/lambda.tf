@@ -2,14 +2,15 @@
  * @application Infrastructure-as-Code (IaC)
  * @source lambda.tf
  * @author Bobwares
- * @version 2.0.1
+ * @version 2.0.2
  * @description Per‑verb Lambda functions.
- * @updated 2025-06-21T17:47:19Z
+ * @updated 2025-06-21T18:41:22Z
  */
 
 locals {
   lambda_map = {
     post   = { handler = "post/index.handler",  policy_json = data.aws_iam_policy_document.ddb_write.json }
+    list   = { handler = "list/index.handler",  policy_json = data.aws_iam_policy_document.ddb_read.json }
     get    = { handler = "get/index.handler",   policy_json = data.aws_iam_policy_document.ddb_read.json }
     patch  = { handler = "patch/index.handler", policy_json = data.aws_iam_policy_document.ddb_write.json }
     delete = { handler = "delete/index.handler", policy_json = data.aws_iam_policy_document.ddb_delete.json }

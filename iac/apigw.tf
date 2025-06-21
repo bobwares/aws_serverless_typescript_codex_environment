@@ -2,9 +2,9 @@
  * @application Infrastructure-as-Code (IaC)
  * @source apigw.tf
  * @author Bobwares
- * @version 2.0.0
+ * @version 2.0.1
  * @description HTTP API routes per verb.
- * @updated 2025-06-20
+ * @updated 2025-06-21T18:41:22Z
  */
 
 resource "aws_apigatewayv2_api" "http" {
@@ -24,6 +24,12 @@ resource "aws_apigatewayv2_route" "post" {
   api_id    = aws_apigatewayv2_api.http.id
   route_key = "POST /items"
   target    = "integrations/${aws_apigatewayv2_integration.verb["post"].id}"
+}
+
+resource "aws_apigatewayv2_route" "list" {
+  api_id    = aws_apigatewayv2_api.http.id
+  route_key = "GET /items"
+  target    = "integrations/${aws_apigatewayv2_integration.verb["list"].id}"
 }
 
 resource "aws_apigatewayv2_route" "get" {
