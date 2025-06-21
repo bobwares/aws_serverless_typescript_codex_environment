@@ -15,3 +15,12 @@ Update tfvars schema path.
 
 #### Changes
 - Point env schema_path to ../schema/domain.json.
+
+### 0.1.2 – 2025-06-21 18:41:22 UTC (work)
+
+#### Task
+Add GET /items route and Lambda mapping.
+
+#### Changes
+- Add GET /items route in apigw.tf.
+- Register list Lambda in lambda.tf.
