@@ -26,6 +26,12 @@ resource "aws_apigatewayv2_route" "post" {
   target    = "integrations/${aws_apigatewayv2_integration.verb["post"].id}"
 }
 
+resource "aws_apigatewayv2_route" "put" {
+  api_id    = aws_apigatewayv2_api.http.id
+  route_key = "PUT /items/{id}"
+  target    = "integrations/${aws_apigatewayv2_integration.verb["put"].id}"
+}
+
 resource "aws_apigatewayv2_route" "list" {
   api_id    = aws_apigatewayv2_api.http.id
   route_key = "GET /items"
@@ -48,6 +54,12 @@ resource "aws_apigatewayv2_route" "delete" {
   api_id    = aws_apigatewayv2_api.http.id
   route_key = "DELETE /items/{id}"
   target    = "integrations/${aws_apigatewayv2_integration.verb["delete"].id}"
+}
+
+resource "aws_apigatewayv2_route" "operation" {
+  api_id    = aws_apigatewayv2_api.http.id
+  route_key = "GET /operations/{id}"
+  target    = "integrations/${aws_apigatewayv2_integration.verb["operation"].id}"
 }
 
 resource "aws_apigatewayv2_stage" "default" {

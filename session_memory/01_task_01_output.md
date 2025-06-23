@@ -1,0 +1,3 @@
+- Added schema/domain.json
+- Implemented CRUD handlers and service layer under src/
+- Added utils for logging, X-Ray, and validation

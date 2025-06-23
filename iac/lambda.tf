@@ -12,8 +12,10 @@ locals {
     post   = { handler = "post/index.handler",  policy_json = data.aws_iam_policy_document.ddb_write.json }
     list   = { handler = "list/index.handler",  policy_json = data.aws_iam_policy_document.ddb_read.json }
     get    = { handler = "get/index.handler",   policy_json = data.aws_iam_policy_document.ddb_read.json }
-    patch  = { handler = "patch/index.handler", policy_json = data.aws_iam_policy_document.ddb_write.json }
-    delete = { handler = "delete/index.handler", policy_json = data.aws_iam_policy_document.ddb_delete.json }
+    put     = { handler = "put/index.handler",    policy_json = data.aws_iam_policy_document.ddb_write.json }
+    patch   = { handler = "patch/index.handler",  policy_json = data.aws_iam_policy_document.ddb_write.json }
+    delete  = { handler = "delete/index.handler", policy_json = data.aws_iam_policy_document.ddb_delete.json }
+    operation = { handler = "operation/index.handler", policy_json = data.aws_iam_policy_document.ddb_read.json }
   }
 }
 

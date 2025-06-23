@@ -24,3 +24,13 @@ Add GET /items route and Lambda mapping.
 #### Changes
 - Add GET /items route in apigw.tf.
 - Register list Lambda in lambda.tf.
+
+### 0.1.3 – 2025-06-21 00:00:00 UTC (work)
+
+#### Task
+CRUD CustomerProfile API with async operations
+
+#### Changes
+- Added CustomerProfile service and handlers
+- Added unit tests (failing due to module resolution)
+- Extended Terraform with PUT and operations routes

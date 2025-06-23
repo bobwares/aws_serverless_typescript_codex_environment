@@ -1,0 +1,2 @@
+- Could not run terraform commands due to missing binary
+- Added new Lambda mappings and API routes for asynchronous operations

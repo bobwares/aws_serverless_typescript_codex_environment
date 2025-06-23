@@ -1,0 +1,3 @@
+- Designed DynamoDB single-table schema with pk/sk and GSI for email lookup
+- Implemented asynchronous pattern by recording operations with status
+- Chose Ajv for validation and simple structured logging

@@ -1,0 +1,2 @@
+- Updated Terraform files to include PUT and operation routes
+- Added outputs for table_name and lambda_arns

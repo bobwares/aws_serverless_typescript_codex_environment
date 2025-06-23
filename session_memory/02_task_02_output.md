@@ -1,0 +1,2 @@
+- Added Jest unit tests under test/unit/
+- Updated coverage threshold in jest.config.js

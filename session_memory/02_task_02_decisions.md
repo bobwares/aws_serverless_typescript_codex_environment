@@ -1,0 +1,2 @@
+- Used jest.unstable_mockModule to stub dependencies
+- Tests failed due to module resolution issues in ESM environment

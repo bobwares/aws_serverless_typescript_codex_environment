@@ -14,3 +14,11 @@ output "api_url" {
 output "functions" {
   value = { for k, m in module.lambda : k => m.lambda_function_name }
 }
+
+output "table_name" {
+  value = aws_dynamodb_table.single.name
+}
+
+output "lambda_arns" {
+  value = { for k, m in module.lambda : k => m.lambda_function_arn }
+}
