@@ -1,0 +1,5 @@
+- Created schema/domain.json with CustomerProfile schema
+- Added Lambda handlers under src/handlers for create, get, update, patch, delete, list
+- Implemented service layer src/services/crud_service.ts
+- Added Powertools utility singletons in src/utils
+- Saved user input in session_memory/00_initial_input.md

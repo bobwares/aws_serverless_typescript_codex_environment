@@ -24,3 +24,23 @@ Add GET /items route and Lambda mapping.
 #### Changes
 - Add GET /items route in apigw.tf.
 - Register list Lambda in lambda.tf.
+
+### 0.1.3 – 2025-06-24 21:15:51 UTC (work)
+
+#### Task
+Task 01 – Generate Source Code for CRUD Serverless App
+
+#### Changes
+- Added CRUD handlers, service layer, and utility singletons
+- Saved CustomerProfile schema
+- Recorded session memory files for Task 01
+
+### 0.1.4 – 2025-06-24 21:41:00 UTC (work)
+
+#### Task
+Task 02 – Generate Unit Tests
+
+#### Changes
+- Added comprehensive Jest suites covering handlers, services, and utilities
+- Created HTTP request examples under test/http
+- Configured jest.config with coverage thresholds and tsconfig for tests

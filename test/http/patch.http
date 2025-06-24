@@ -1,0 +1,4 @@
+PATCH https://example.com/customers/11111111-1111-1111-1111-111111111111
+Content-Type: application/json
+
+{"firstName":"Bob"}

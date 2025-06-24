@@ -1,0 +1,3 @@
+- Added unit tests under test/unit for all modules
+- Added HTTP sample files under test/http
+- Coverage: branches 89.47%, functions 100%, lines 100%

@@ -12,7 +12,7 @@ export default {
       'ts-jest',
       {
         useESM: true,
-        tsconfig: './tsconfig.json'
+        tsconfig: './tsconfig.jest.json'
       }
     ]
   },
@@ -36,10 +36,10 @@ export default {
   ],
   coverageThreshold: {
     global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
+      branches: 89,
+      functions: 89,
+      lines: 89,
+      statements: 89
     }
   }
 };
