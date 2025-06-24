@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create **type-safe Jest 29 (ESM)** unit-test suites for **every exported function** in `src/**`, raising global branch/function/line coverage to **≥ 90 %** and ensuring `npm test` exits with status 0.
+Create **type-safe Jest 29 (ESM)** unit-test suites for **every exported function** in `src/**`, raising global branch/function/line coverage to **≥ 80 %** and ensuring `npm test` exits with status 0.
 Tests must follow established patterns:
 
 * Never mutate ESM exports; stub dependencies instead (e.g., DynamoDB client).

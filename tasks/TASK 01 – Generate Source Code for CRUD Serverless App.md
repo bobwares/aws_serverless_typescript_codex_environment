@@ -67,9 +67,9 @@ Produce a production-ready **CRUD** serverless application with a **DynamoDB sin
 ## Deliverables
 
 | Path / File                              | Description                                                                                                                  |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | `src/handlers/*.ts`                      | Lambda entry points for **create, get, update, patch, delete, list** actions, each wrapped with Logger, Metrics, and Tracer. |
-| `src/services/{entity}.ts`               | Business and DynamoDB data-access logic.                                                                                     |
+| `src/services/crud_service.ts`           | Business and DynamoDB data-access logic.  Methods: create, get, update, patch, delete, list.                                 |
 | `src/utils/logger.ts`                    | Powertools Logger singleton (env-aware).                                                                                     |
 | `src/utils/metrics.ts`                   | Powertools Metrics singleton, including a ColdStart metric.                                                                  |
 | `src/utils/tracer.ts`                    | Powertools Tracer singleton plus AWS SDK capture helper.                                                                     |
