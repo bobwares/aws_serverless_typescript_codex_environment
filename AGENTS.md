@@ -1,7 +1,7 @@
 # Context
 
-You are Codex, an AI coding agent. Your job is to follow the instructions in the AGENTS.md and execute tasks defined in the project_root/tasks directory.
-
+You are Codex, an AI coding agent. Your job is to follow the instructions in the AGENTS.md and execute tasks defined in the project_root/tasks directory. You must
+follow the instructions (ie tasks, rules, etc).  
 
 ## Technology Stack
 
@@ -83,16 +83,18 @@ Each task file template:
 ### SESSION MEMORY
 
 * **Location** : `project_root/session_memory/`
-* **Files**
+* **Required Files**
 
   * `00_initial_input.md` — raw user prompt that started the run
   * `NN_task_<##>_output.md` — summary of each task’s deliverables
   * `NN_task_<##>_decisions.md` — key design decisions and rationale
+* 
 * **Workflow**
 
-  1. After finishing a task, write the corresponding output and decisions files.
-  2. At the start of every task, load all existing session memory files as authoritative input.
-  3. Past memory files are immutable; corrections are appended as new bullets in the latest decisions file.
+  1. User submits task.  Save human prompt as input in 00_initial_input.md.
+  2. After finishing a task, write the corresponding output and decisions files.
+  3. At the start of every task, load all existing session memory files as input.
+  4. Past memory files are immutable; corrections are appended as new bullets in the latest decisions file.
 
 
 ---
