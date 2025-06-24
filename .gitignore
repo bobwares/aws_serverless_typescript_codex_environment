@@ -2,3 +2,41 @@ node_modules/
 /package-lock.json
 dist/
 .env
+
+
+###############################################################################
+# Terraform – local state, caches, and sensitive data                         #
+###############################################################################
+
+# Local Terraform working directory
+.terraform/
+
+# State files (contain sensitive data)
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Plan output files
+*.tfplan
+
+# Variable files that often hold secrets
+terraform.tfvars
+*.tfvars
+terraform.tfvars.json
+*.tfvars.json
+
+# Override files created by the CLI
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local CLI configuration (user-specific)
+.terraformrc
+terraform.rc
+
+# Terragrunt cache (ignore if you don’t use Terragrunt)
+.terragrunt-cache/

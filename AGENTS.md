@@ -1,14 +1,47 @@
 # Context
 
-You are **“ServerlessArchitectBot”**, a principal AWS serverless engineer who delivers production-grade back-end code and infrastructure in one pass:
+You are Codex, an AI coding agent. Your job is to follow the instructions in the AGENTS.md and execute tasks defined in the project_root/tasks directory.
 
-* **Infrastructure** – Terraform ≥ 1.8 (AWS provider ∼> 5.x)
-  * HTTP API Gateway (HTTP APIs)
-  * AWS Lambda (Node 20 arm64 IMDSv2)
-  * DynamoDB single-table (PAY\_PER\_REQUEST + GSI `gsi1`)
-  * Remote-state backend placeholders (S3 bucket + DynamoDB lock table)
-* **Application code** – TypeScript Lambda handlers, service layer, validation, logging
-* **Quality gates** – Jest tests (≥ 90 % coverage) **plus** HTTP smoke-tests in `.http` files
+
+## Technology Stack
+
+* **Application Code**
+
+  * TypeScript 5.8 Lambda handlers (ES Modules, Node 20 arm64, IMDSv2)
+  * **AWS Lambda Powertools v2.22** primitives integrated throughout:
+
+    * `@aws-lambda-powertools/logger` – structured, JSON-formatted logging
+    * `@aws-lambda-powertools/metrics` – custom and CloudWatch embedded metrics (EMF)
+    * `@aws-lambda-powertools/tracer` – X-Ray auto-instrumentation & cold-start capture
+    * `@aws-lambda-powertools/parameters` – cached access to SSM Parameter Store / Secrets Manager
+    * `@aws-lambda-powertools/parser` – event-source–aware body parsing
+    * `@aws-lambda-powertools/validation` – schema validation helpers (paired with **Zod 3.25**)
+  * Business-logic service layer and DynamoDB data access (`@aws-sdk/*`)
+  * Id generation via `uuid`, additional custom utilities as needed
+
+* **Infrastructure as Code**
+
+  * **Terraform ≥ 1.8** (AWS provider ≈ 5.x)
+  * **HTTP API Gateway** (HTTP APIs) front-end
+  * **AWS Lambda** (Node 20, arm64) with Powertools layers or bundled deps
+  * **Amazon DynamoDB** single-table (`PAY_PER_REQUEST`), GSI **`gsi1`**
+
+* **Build, Test & Lint**
+
+  * **esbuild** bundling (tree-shakes Powertools for minimal cold-start size)
+  * **Jest 29** + **ts-jest** for unit tests (Powertools utilities mock-friendly)
+  * **ESLint / Prettier** for code quality; scripts: `lint`, `test`, `build`, `deploy` (Terraform apply)
+
+* **Observability & Validation**
+
+  * End-to-end tracing via Powertools **Tracer** (wrapping X-Ray)
+  * Automatic structured logs and CloudWatch EMF metrics
+  * Event and payload validation using **Powertools Validation** (+ Zod) and **ajv**
+
+* **Package Management**
+
+  * Deterministic builds via pinned versions in `package.json`; standard **npm** workflows
+
 
 ## TASK
 
@@ -152,7 +185,7 @@ project_root/adr/
 
 | Scenario                                                     | Example                                                                                                                                                                                                                                                                | Required? |
 |--------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| Summarize Chain of Thought reasoning for the tasl            | Documenting the decision flow: ① capture requirements for a low-latency, pay-per-request CRUD API → ② compare DynamoDB single-table vs. Aurora Serverless → ③ choose DynamoDB single-table with GSI on email for predictable access patterns and minimal ops overhead. | **Yes**   |
+| Summarize Chain of Thought reasoning for the task           | Documenting the decision flow: ① capture requirements for a low-latency, pay-per-request CRUD API → ② compare DynamoDB single-table vs. Aurora Serverless → ③ choose DynamoDB single-table with GSI on email for predictable access patterns and minimal ops overhead. | **Yes**   |
 | Selecting one library or pattern over plausible alternatives | Choosing Prisma instead of TypeORM                                                                                                                                                                                                                                     | **Yes**   |
 | Introducing a new directory or module layout                 | Splitting `customer` domain into bounded contexts                                                                                                                                                                                                                      | **Yes**   |
 | Changing a cross-cutting concern                             | Switching error-handling strategy to functional `Result` types                                                                                                                                                                                                         | **Yes**   |

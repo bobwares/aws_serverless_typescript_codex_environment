@@ -9,6 +9,7 @@ Tests must follow established patterns:
 * Use `jest.fn<Promise<any>, [any]>()` for `ddb.send` mocks so `.mockResolvedValueOnce` is typed.
 * Stub modules with `jest.unstable_mockModule()` **before** dynamic `import()` of the module under test.
 * Fixtures must satisfy the domain types defined in `schema/domain.json`.
+* **Quality gates** – Jest tests (≥ 90 % coverage) **plus** HTTP smoke-tests in `.http` files
 
 All new files must include the standard metadata header and reside under `test/unit/`, mirroring source paths.
 
