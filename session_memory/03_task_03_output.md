@@ -1,0 +1,6 @@
+- Added Terraform provider.tf with remote state placeholders
+- Created main.tf entry point
+- Updated lambda.tf with create, update handlers and environment variables
+- Updated apigw.tf to include PUT route and rename POST to create
+- Restructured variables and DynamoDB table attributes
+- Added outputs table_name and lambda_arns

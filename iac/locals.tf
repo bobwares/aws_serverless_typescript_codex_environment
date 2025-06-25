@@ -11,5 +11,5 @@ locals {
   domain_schema = jsondecode(file(var.schema_path))
   domain_title  = lower(local.domain_schema.title)
 
-  api_name      = "${local.domain_title}-api-${var.environment}"
+  api_name = "${local.domain_title}-api-${var.environment}"
 }

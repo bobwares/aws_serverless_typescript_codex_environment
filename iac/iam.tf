@@ -19,14 +19,14 @@ data "aws_iam_policy_document" "ddb_read" {
 
 data "aws_iam_policy_document" "ddb_write" {
   statement {
-    actions = ["dynamodb:PutItem", "dynamodb:UpdateItem"]
+    actions   = ["dynamodb:PutItem", "dynamodb:UpdateItem"]
     resources = [aws_dynamodb_table.single.arn]
   }
 }
 
 data "aws_iam_policy_document" "ddb_delete" {
   statement {
-    actions = ["dynamodb:DeleteItem"]
+    actions   = ["dynamodb:DeleteItem"]
     resources = [aws_dynamodb_table.single.arn]
   }
 }

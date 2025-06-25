@@ -2,10 +2,10 @@
  * @application Infrastructure-as-Code (IaC)
  * @source apigw.tf
  * @author Bobwares
- * @version 2.0.1
- * @description HTTP API routes per verb.
- * @updated 2025-06-21T18:41:22Z
- */
+* @version 2.0.2
+* @description HTTP API routes for CRUD operations.
+* @updated 2025-06-25T14:00:08Z
+*/
 
 resource "aws_apigatewayv2_api" "http" {
   name          = local.api_name
@@ -20,10 +20,10 @@ resource "aws_apigatewayv2_integration" "verb" {
   payload_format_version = "2.0"
 }
 
-resource "aws_apigatewayv2_route" "post" {
+resource "aws_apigatewayv2_route" "create" {
   api_id    = aws_apigatewayv2_api.http.id
   route_key = "POST /items"
-  target    = "integrations/${aws_apigatewayv2_integration.verb["post"].id}"
+  target    = "integrations/${aws_apigatewayv2_integration.verb["create"].id}"
 }
 
 resource "aws_apigatewayv2_route" "list" {
@@ -36,6 +36,12 @@ resource "aws_apigatewayv2_route" "get" {
   api_id    = aws_apigatewayv2_api.http.id
   route_key = "GET /items/{id}"
   target    = "integrations/${aws_apigatewayv2_integration.verb["get"].id}"
+}
+
+resource "aws_apigatewayv2_route" "update" {
+  api_id    = aws_apigatewayv2_api.http.id
+  route_key = "PUT /items/{id}"
+  target    = "integrations/${aws_apigatewayv2_integration.verb["update"].id}"
 }
 
 resource "aws_apigatewayv2_route" "patch" {
@@ -57,8 +63,8 @@ resource "aws_apigatewayv2_stage" "default" {
 }
 
 resource "aws_lambda_permission" "allow_apigw" {
-  for_each     = module.lambda
-  statement_id = "AllowInvoke-${each.key}"
+  for_each      = module.lambda
+  statement_id  = "AllowInvoke-${each.key}"
   action        = "lambda:InvokeFunction"
   function_name = each.value.lambda_function_name
   principal     = "apigateway.amazonaws.com"

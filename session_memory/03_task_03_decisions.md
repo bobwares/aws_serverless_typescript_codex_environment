@@ -1,0 +1,5 @@
+- Kept local backend for terraform init success but documented remote-state placeholders
+- Adjusted Lambda handler mapping to match TypeScript filenames and added update action
+- Aligned API Gateway routes with new Lambda keys
+- Expanded outputs to expose table name and function ARNs for integration
+- Reformatted Terraform files with terraform fmt

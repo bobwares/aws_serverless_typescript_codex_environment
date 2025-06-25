@@ -44,3 +44,15 @@ Task 02 – Generate Unit Tests
 - Added comprehensive Jest suites covering handlers, services, and utilities
 - Created HTTP request examples under test/http
 - Configured jest.config with coverage thresholds and tsconfig for tests
+
+
+### 0.1.5 – 2025-06-25 14:00:08 UTC (work)
+
+#### Task
+Task 03 – Generate Terraform Infrastructure
+
+#### Changes
+- Added provider.tf with backend placeholders and provider requirements
+- Created main.tf and reformatted modules with terraform fmt
+- Added update Lambda and route, updated handler mappings
+- Added outputs table_name and lambda_arns
