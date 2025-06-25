@@ -134,6 +134,7 @@ Each task file template:
       * Version: semantic versioning starting at 0.1.0
       * Author: {{author}}
       * Date: {{YYYY-MM-DDThh:mm:ssZ}}
+      * Exports: {{ exported functions, types, and variables.}}
       * Description: Level-5 documentation of the class or function. Document each
       *              method or function in the file.
       */
@@ -167,6 +168,7 @@ Each task file template:
     - Create src directories with unit-test folders.
     - Add e2e test directory for Playwright.
     ```
+
 ## ADR (Architecture Decision Record)
 
 ### Purpose
