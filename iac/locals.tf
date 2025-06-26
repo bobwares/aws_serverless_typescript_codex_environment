@@ -22,7 +22,7 @@ locals {
   # ---------------------------------------------------------------------------
   # Lower-cased version of schema["title"] (e.g., "CustomerProfile" → "customerprofile").
   # Used as a base for naming AWS resources in a consistent, environment-agnostic way.
-  domain_title  = lower(local.domain_schema.title)
+  domain_title = lower(local.domain_schema.title)
 
   # ---------------------------------------------------------------------------
   # domain_resource

@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "ddb_read" {
     ]
     resources = [
       aws_dynamodb_table.single.arn,
-      "${aws_dynamodb_table.single.arn}/index/*"   # gsi1
+      "${aws_dynamodb_table.single.arn}/index/*" # gsi1
     ]
   }
 }

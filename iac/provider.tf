@@ -2,35 +2,28 @@
  * @application Infrastructure-as-Code (IaC)
  * @source provider.tf
  * @author Codex
- * @version 2.1.0
- * @description Terraform provider configuration with remote state placeholders.
- * @updated 2025-06-25T14:00:08Z
-*/
+ * @version 2.2.1
+ * @description Backend configuration and provider instantiation.
+ *              Version constraints are declared in versions.tf.
+ * @updated 2025-06-26T16:05:00-05:00
+ */
 
 terraform {
-  required_version = ">= 1.8.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-    local = {
-      source  = "hashicorp/local"
-      version = "~> 2.0"
-    }
-  }
-
+  // -------------------------------------------------------------------------
+  // State backend (local file).  Supply an external backend configuration
+  // with `terraform init -backend-config=<file>` to switch to S3 + DynamoDB.
+  // -------------------------------------------------------------------------
   backend "local" {
     path = "terraform.tfstate"
-    # To use remote state, configure:
-    # bucket         = "<state-bucket>"
-    # key            = "customer-api/terraform.tfstate"
-    # region         = var.aws_region
-    # dynamodb_table = "<lock-table>"
   }
 }
 
+/*-----------------------------------------------------------------------------
+# AWS & Local Providers
+# ---------------------------------------------------------------------------*/
 provider "aws" {
   region = var.aws_region
+  default_tags { tags = var.tags }
 }
+
+provider "local" {}

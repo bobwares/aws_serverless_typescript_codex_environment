@@ -30,7 +30,7 @@ resource "aws_cloudwatch_log_group" "api_access" {
 -----------------------------------------------------------------------------*/
 resource "aws_apigatewayv2_stage" "default" {
   api_id      = aws_apigatewayv2_api.http.id
-  name        = var.environment                      # e.g. dev, stage, prod
+  name        = var.environment # e.g. dev, stage, prod
   auto_deploy = true
 
   access_log_settings {
@@ -53,7 +53,7 @@ resource "aws_apigatewayv2_stage" "default" {
 -----------------------------------------------------------------------------*/
 resource "aws_apigatewayv2_api" "http" {
   name          = local.api_name
-  protocol_type = "HTTP"            # Lower cost & latency than REST v1
+  protocol_type = "HTTP" # Lower cost & latency than REST v1
 }
 
 /*-----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ resource "aws_apigatewayv2_api" "http" {
 resource "aws_apigatewayv2_integration" "verb" {
   for_each               = module.lambda
   api_id                 = aws_apigatewayv2_api.http.id
-  integration_type       = "AWS_PROXY"                 # Full pass-through
+  integration_type       = "AWS_PROXY" # Full pass-through
   integration_uri        = each.value.lambda_function_invoke_arn
   payload_format_version = "2.0"
 }
