@@ -2,43 +2,62 @@
  * App: Customer API
  * Package: build
  * File: esbuild.mjs
- * Version: 0.1.0
+ * Version: 0.3.0
  * Author: ServerlessArchitectBot
- * Date: 2025-06-19T18:25:35Z
- * Description: Builds TypeScript Lambda handlers into ESM JavaScript using
- *              esbuild for deployment.
+ * Date: 2025-06-25T20:30:00Z
+ * Description: Builds each TypeScript Lambda handler into its own
+ *              CommonJS JS file under a dedicated folder.
  */
 
 import { build } from 'esbuild';
-import { readdirSync, statSync } from 'fs';
-import { dirname, join, extname } from 'path';
+import { readdirSync, statSync, mkdirSync } from 'fs';
+import { dirname, join, extname, basename } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const handlersDir = join(__dirname, 'src', 'handlers');
-const outdir = join(__dirname, 'dist', 'handlers');
+const baseOutDir = join(__dirname, 'dist', 'handlers');
 
+/** Recursively find all .ts files under a directory */
 function findTsFiles(dir) {
   return readdirSync(dir).flatMap(name => {
     const full = join(dir, name);
     return statSync(full).isDirectory()
         ? findTsFiles(full)
-        : extname(full) === '.ts' ? [full] : [];
+        : extname(full) === '.ts'
+            ? [full]
+            : [];
   });
 }
 
-const entryPoints = findTsFiles(handlersDir);
+const entries = findTsFiles(handlersDir);
 
-for (const entry of entryPoints) {
-  const fileName = entry.split('/').pop().replace(/\.ts$/, '.mjs');
+for (const entry of entries) {
+  // e.g. 'src/handlers/create.ts' → handlerName = 'create'
+  const handlerName = basename(entry, '.ts');
+
+  // create the per-handler output folder
+  const outDir = join(baseOutDir, handlerName);
+  mkdirSync(outDir, { recursive: true });
+
+  // output file: dist/handlers/<handlerName>/<handlerName>.js
+  const outfile = join(outDir, `${handlerName}.js`);
+
+  console.log(`Building handler "${handlerName}" → ${outfile}`);
+
   await build({
     entryPoints: [entry],
-    platform: 'node',
     bundle: true,
+    platform: 'node',
     target: ['node20'],
-    format: 'esm',
-    outfile: join(outdir, fileName),
+    format: 'cjs',
+    outfile,
     sourcemap: false,
     external: ['aws-sdk'],
+
+    // ensure Lambda sees a real CJS export
+    footer: {
+      js: 'module.exports = { handler };',
+    },
   });
 }

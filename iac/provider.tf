@@ -9,15 +9,20 @@
 
 terraform {
   required_version = ">= 1.8.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
+    }
   }
 
   backend "local" {
-    path = "iac/terraform.tfstate"
+    path = "terraform.tfstate"
     # To use remote state, configure:
     # bucket         = "<state-bucket>"
     # key            = "customer-api/terraform.tfstate"
