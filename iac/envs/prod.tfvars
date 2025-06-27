@@ -6,7 +6,7 @@
 # @updated 2025-06-21T18:34:41Z
 
 environment = "prod"
-schema_path = "../schema/domain.json"
+schema_path = "../../schema/domain.json"
 tags = {
   Project = "ServerlessCrud"
   Owner   = "Bobwares"
