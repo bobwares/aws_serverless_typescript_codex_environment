@@ -1,57 +1,11 @@
-# AWS Serverless TypeScript Codex Starter
-
-This is a GitHub Template Repository optimized for rapidly bootstrapping new AWS Serverless CRUD applications using ChatGPT Codex. The provided setup streamlines development by generating ready-to-deploy serverless APIs, infrastructure, and tests from a simple domain schema you provide.
-
-
-## Getting Started
-
-1. **Create a New Repository from This Template (GitHub CLI)**
-   Ensure the GitHub CLI is installed (`brew install gh` on macOS or use the installers for Linux/Windows) and that you’re authenticated (`gh auth login`).
-   The command below will
-   • create a **new public repo** in your GitHub account named `my-serverless-app`,
-   • populate it with the contents of `bobwares/aws_serverless_typescript_codex_starter`,
-   • clone the fresh repo locally, and
-   • switch your shell into the newly cloned directory.
-
-   ```bash
-   gh repo create my-serverless-app \
-     --template bobwares/aws_serverless_typescript_codex_starter \
-     --public \
-     --clone
-   cd my-serverless-app
-   ```
-
-### Project Structure
-
-```
-.
-├── schema/                  # Place your domain schema here (JSON or YAML)
-├── src/                     # Generated application code (handlers, services, utils)
-├── test/                    # Jest unit and integration tests
-├── iac/                     # Terraform modules and environment tfvars
-├── tasks/                   # Codex task definitions
-├── AGENTS.md                # Rules and contribution guidelines
-├── eslint.config.js         # ESLint configuration
-├── jest.config.js           # Jest configuration
-├── tsconfig.json            # Base TypeScript options
-├── tsconfig.jest.json       # Jest TypeScript options
-├── esbuild.mjs              # Build script for Lambda handlers
-├── package.json             # Node 20 dependencies and scripts
-├── .prettierrc              # Prettier formatting rules
-└── README.md                # Project documentation (this file)
-```
-
-
-2. **Create the OpenAI Codex Environment**
-
 ChatGPT Codex lets you spin up a disposable, cloud-hosted workspace—called an *environment*—that is automatically pre-cloned with a GitHub repository you choose.
-Inside that sandbox, Codex can read and edit files, run build commands, execute tests, and commit results without ever touching your local machine.
+Inside that sandbox, Codex can read and edit files, run build commands, execute tests, and commit results without ever touching your local machine. 
 
 Each Codex task you launch (“Write unit tests”, “Fix the failing build”, etc.) runs in its own fresh copy of that environment and cannot see the public Internet.
 
 ---
 
-### Prerequisites
+### 1. Prerequisites
 
 | Requirement                                                                                | Reason                                                                                    |
 | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
@@ -61,21 +15,21 @@ Each Codex task you launch (“Write unit tests”, “Fix the failing build”,
 
 ---
 
-### One-time GitHub connector setup
+### 2. One-time GitHub connector setup
 
 1. In ChatGPT’s left sidebar, click **Codex → Get Started**.
 2. Select **Connect to GitHub**.
 
-   * Authorize the *ChatGPT GitHub Connector* OAuth application.
-   * Choose the installation target (typically your organization).
-   * Grant access to the repositories you want Codex to work on. ([help.openai.com][3])
+    * Authorize the *ChatGPT GitHub Connector* OAuth application.
+    * Choose the installation target (typically your organization).
+    * Grant access to the repositories you want Codex to work on. ([help.openai.com][3])
 3. Wait a few seconds—Codex now sees the repo list that you permitted.
 
 ---
 
-### Create a new Codex environment
+### 3. Create a new Codex environment
 
-1. In your browser go to https://chatgpt.com/codex/settings/environments.
+1. In your browser go to https://chatgpt.com/codex/settings/environments. 
 2. click **Create Environment**.
 3. enter the following information for the new environment.
 
@@ -191,45 +145,3 @@ fi
 echo "Setup complete."
 
 ```
-
-
-## Workflow
-
-### 1. Provide a Domain Schema
-
-Create `schema/domain.json` or `schema/domain.yaml` describing your business entities. This schema drives all subsequent code generation.
-
-```yaml
-title: Customer
-resource: customers
-type: object
-properties:
-  id:
-    type: string
-    format: uuid
-  firstName:
-    type: string
-  lastName:
-    type: string
-required: [id, firstName, lastName]
-```
-
----
-
-## Terraform
-
-Infrastructure code lives in the `iac/` directory. Each environment (dev, stage, prod) has a corresponding `tfvars` file under `iac/envs/`.
-
-```bash
-cd iac
-terraform init -backend-config=envs/dev.tfvars
-terraform apply -var-file=envs/dev.tfvars -auto-approve
-```
-
-This deploys an HTTP API Gateway, Lambda functions, and a DynamoDB single-table setup with a GSI named `gsi1`.
-
----
-
-## Using the Generated API
-
-After deployment, the base API URL is written to `test/http/api_url.txt`. You can send HTTP requests to the CRUD routes using the verb-based paths—for example, `POST /customers`.
