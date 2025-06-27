@@ -1,0 +1,4 @@
+- Mocked AWS SDK v3 DocumentClient via jest.unstable_mockModule for CrudService tests
+- Stopped network calls by stubbing tracer instrumentation
+- Added .http smoke files for manual API testing
+- Raised Jest coverage threshold to 90% per acceptance criteria

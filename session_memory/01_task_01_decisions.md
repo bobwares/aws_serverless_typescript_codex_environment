@@ -1,0 +1,4 @@
+- Adopted DynamoDB single-table keys pk=CUSTOMER#id and sk=PROFILE
+- Handlers use Powertools Logger, Metrics, and Tracer
+- Zod schemas manually defined from JSON schema
+- Metrics and tracing integrated using Powertools utilities

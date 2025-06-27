@@ -2,10 +2,10 @@
  * @application Infrastructure-as-Code (IaC)
  * @source dynamodb.tf
  * @author Bobwares
- * @version 2.0.0
- * @description DynamoDB single table.
- * @updated 2025-06-20
- */
+ * @version 2.0.1
+ * @description DynamoDB single-table with GSI.
+ * @updated 2025-06-25T14:00:08Z
+*/
 
 resource "aws_dynamodb_table" "single" {
   name         = "${local.domain_title}-${var.environment}"
@@ -13,9 +13,20 @@ resource "aws_dynamodb_table" "single" {
   hash_key     = "pk"
   range_key    = "sk"
 
-  attribute { name = "pk"     type = "S" }
-  attribute { name = "sk"     type = "S" }
-  attribute { name = "gsi1pk" type = "S" }
+  attribute {
+    name = "pk"
+    type = "S"
+  }
+
+  attribute {
+    name = "sk"
+    type = "S"
+  }
+
+  attribute {
+    name = "gsi1pk"
+    type = "S"
+  }
 
   global_secondary_index {
     name            = "gsi1"
