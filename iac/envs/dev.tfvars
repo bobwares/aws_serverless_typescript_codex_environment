@@ -9,5 +9,6 @@ environment = "dev"
 schema_path = "../schema/domain.json"
 tags = {
   Project = "ServerlessCrud"
-  Owner   = "Bobwares"
+  Owner   = "Codex"
+  ManagedBy  = "terraform"
 }
