@@ -13,6 +13,11 @@ The workflow is centred around a domain schema you supply. Codex reads this sche
 ├── test/                    # Jest unit and integration tests
 ├── iac/                     # Terraform modules and environment tfvars
 ├── tasks/                   # Codex task definitions
+├── AGENTS.md                # Rules and contribution guidelines
+├── eslint.config.js         # ESLint configuration
+├── jest.config.js           # Jest configuration
+├── tsconfig.json            # Base TypeScript options
+├── tsconfig.jest.json       # Jest TypeScript options
 ├── esbuild.mjs              # Build script for Lambda handlers
 ├── package.json             # Node 20 dependencies and scripts
 └── README.md                # Project documentation (this file)
